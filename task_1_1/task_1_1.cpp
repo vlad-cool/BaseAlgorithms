@@ -55,21 +55,6 @@ int main()
         i += j - 1;
     }
 
-    // {
-    //     ListNode *iter_node = root_node->next;
-    //     while (iter_node->next != nullptr)
-    //     {
-    //         std::cout << "/";
-    //         for (size_t i = 0; i < iter_node->length; i++)
-    //         {
-    //             std::cout << iter_node->item[i];
-    //         }
-    //         iter_node = iter_node->next;
-    //     }
-    // }
-
-    // std::cout << "\n######################################" << std::endl;
-
     // Removing nodes
     iter_node = root_node->next;
     while (iter_node->next != nullptr)
@@ -92,18 +77,18 @@ int main()
             if (iter_node->prev->prev == nullptr)
             {
                 std::cout << "Going upper than the root directory is not possible." << std::endl;
+                while (root_node != nullptr)
+                {
+                    ListNode *node_to_delete = root_node;
+                    root_node = root_node->next;
+                    delete node_to_delete;
+                }
                 return 179;
             }
             else
             {
-                // if (iter_node->prev->prev != nullptr)
-                //     //     root_node = iter_node;
-                //     // else
                 iter_node->prev->prev->next = iter_node->next;
                 iter_node->next->prev = iter_node->prev->prev;
-
-                // if (iter_node->next != nullptr)
-                //     iter_node->next->prev = iter_node->prev->prev;
 
                 ListNode *node_to_delete = iter_node;
 
