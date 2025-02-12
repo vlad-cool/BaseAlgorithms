@@ -55,20 +55,20 @@ int main()
         i += j - 1;
     }
 
-    {
-        ListNode *iter_node = root_node->next;
-        while (iter_node->next != nullptr)
-        {
-            std::cout << "/";
-            for (size_t i = 0; i < iter_node->length; i++)
-            {
-                std::cout << iter_node->item[i];
-            }
-            iter_node = iter_node->next;
-        }
-    }
+    // {
+    //     ListNode *iter_node = root_node->next;
+    //     while (iter_node->next != nullptr)
+    //     {
+    //         std::cout << "/";
+    //         for (size_t i = 0; i < iter_node->length; i++)
+    //         {
+    //             std::cout << iter_node->item[i];
+    //         }
+    //         iter_node = iter_node->next;
+    //     }
+    // }
 
-    std::cout << "\n######################################" << std::endl;
+    // std::cout << "\n######################################" << std::endl;
 
     // Removing nodes
     iter_node = root_node->next;
