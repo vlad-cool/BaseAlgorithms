@@ -1,0 +1,27 @@
+visit google.com
+back 2
+back 1
+forward 1
+####################
+homepage
+google.com
+homepage
+homepage
+google.com
+####################
+visit google.com
+visit linux.org
+visit youtube.com
+back 1
+visit facebook.com
+back 1
+forward 1
+####################
+homepage
+google.com
+linux.org
+youtube.com
+linux.org
+facebook.com
+linux.org
+facebook.com
