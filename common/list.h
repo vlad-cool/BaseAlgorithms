@@ -125,22 +125,4 @@ public:
     }
 };
 
-// template <typename T>
-// class List
-// {
-// private:
-//     ListNode *first_node, *last_node;
-// public:
-//     List()
-//     {
-//         first_node = nullptr;
-//         last_node = nullptr;
-//     }
-
-//     push_back(T item)
-//     {
-
-//     }
-// };
-
 #endif
