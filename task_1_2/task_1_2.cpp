@@ -1,32 +1,17 @@
 #include <iostream>
 #include <string>
+#include "../common/list.h"
 
-struct ListNode
+void visit(ListNode<std::string> *list, std::string website)
 {
-    ListNode *next;
-    ListNode *prev;
-    std::string item;
 
-    ListNode()
-    {
-        next = nullptr;
-        prev = nullptr;
-        item = "";
-    }
-
-    ListNode(ListNode *prev_node)
-    {
-        next = nullptr;
-        prev = prev_node;
-        item = "";
-    }
-};
+}
 
 int main()
 {
-    ListNode *root_node = new ListNode();
-    root_node->item = "homepage";
-    ListNode *current_node = root_node;
+    ListNode<std::string> *root_node = new ListNode<std::string>("homepage");
+
+    ListNode<std::string> *current_node = root_node;
 
     std::string command;
     std::string website;
