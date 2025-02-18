@@ -1,11 +1,12 @@
 CXX = g++
-CXXFLAGS = -std=c++11 -Wall -O2
+CXXFLAGS = -Wall -O2
 SOURCES = $(wildcard task*/*.cpp)
+COMMON = $(wildcard common/*)
 TARGETS = $(SOURCES:.cpp=)
 
 all: $(TARGETS)
 
-%: %.cpp
+%: %.cpp $(COMMON)
 	$(CXX) $(CXXFLAGS) -o $@ $<
 
 clean:
