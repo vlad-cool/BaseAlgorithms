@@ -2,9 +2,36 @@
 #include <string>
 #include "../common/list.h"
 
-void visit(ListNode<std::string> *list, std::string website)
+void visit(ListNode<std::string> **list_node, std::string website)
 {
+    *list_node = (**list_node).insert_after(website);
 
+    while (!(**list_node).is_last())
+    {
+        (**list_node).delete_next_node();
+    }
+
+    std::cout << website << std::endl;
+}
+
+void go_backward(ListNode<std::string> **list_node, unsigned int N)
+{
+    while (N != 0 && !(**list_node).is_first())
+    {
+        N--;
+        *list_node = (**list_node).get_prev();
+    }
+    std::cout << (**list_node).item << std::endl;
+}
+
+void go_forward(ListNode<std::string> **list_node, unsigned int N)
+{
+    while (N != 0 && !(**list_node).is_last())
+    {
+        N--;
+        *list_node = (**list_node).get_next();
+    }
+    std::cout << (**list_node).item << std::endl;
 }
 
 int main()
@@ -25,41 +52,17 @@ int main()
         if (command == "visit")
         {
             std::cin >> website;
-
-            ListNode *iter_node = current_node->next;
-            while (iter_node != nullptr)
-            {
-                ListNode *node_to_delete = iter_node;
-
-                iter_node = iter_node->next;
-                delete node_to_delete;
-            }
-
-            current_node->next = new ListNode(current_node);
-            current_node->next->item = website;
-            current_node = current_node->next;
-
-            std::cout << website << std::endl;
+            visit(&current_node, website);
         }
         else if (command == "back")
         {
             std::cin >> N;
-            while (N != 0 && current_node->prev != nullptr)
-            {
-                N--;
-                current_node = current_node->prev;
-            }
-            std::cout << current_node->item << std::endl;
+            go_backward(&current_node, N);
         }
         else if (command == "forward")
         {
             std::cin >> N;
-            while (N != 0 && current_node->next != nullptr)
-            {
-                N--;
-                current_node = current_node->next;
-            }
-            std::cout << current_node->item << std::endl;
+            go_forward(&current_node, N);
         }
         else
         {
@@ -67,14 +70,7 @@ int main()
         }
     }
 
-    ListNode *iter_node = root_node;
-    while (iter_node != nullptr)
-    {
-        ListNode *node_to_delete = iter_node;
-
-        iter_node = iter_node->next;
-        delete node_to_delete;
-    }
+    delete root_node;
 
     return 0;
 }
