@@ -12,18 +12,18 @@ void swap(T *a, T *b)
 }
 
 template <typename T>
-void copy(const T *src, T *dest, size_t size)
+void copy(const T *src, T *dest, ssize_t size)
 {
-    for (size_t i = 0; i < size; i++)
+    for (ssize_t i = 0; i < size; i++)
     {
         dest[i] = src[i];
     }
 }
 
 template <typename T>
-bool check_sorted(T *array, size_t size)
+bool check_sorted(T *array, ssize_t size)
 {
-    for (size_t i = 1; i < size; i++)
+    for (ssize_t i = 1; i < size; i++)
     {
         if (array[i] < array[i - 1])
         {
@@ -34,13 +34,13 @@ bool check_sorted(T *array, size_t size)
 }
 
 template <typename T>
-void array_bubble_sort(T *array, size_t size, bool with_check = false)
+void array_bubble_sort(T *array, ssize_t size, bool with_check = false)
 {
     bool sorted;
-    for (size_t i = 1; i < size; i++)
+    for (ssize_t i = 1; i < size; i++)
     {
         sorted = true;
-        for (size_t j = 0; j < size - i; j++)
+        for (ssize_t j = 0; j < size - i; j++)
         {
             if (array[j] > array[j + 1])
             {
@@ -56,13 +56,13 @@ void array_bubble_sort(T *array, size_t size, bool with_check = false)
 }
 
 template <typename T>
-void array_shaker_sort(T *array, size_t size, bool with_check = false)
+void array_shaker_sort(T *array, ssize_t size, bool with_check = false)
 {
     bool sorted;
-    for (size_t i = 1; i < size / 2; i++)
+    for (ssize_t i = 1; i < size / 2; i++)
     {
         sorted = true;
-        for (size_t j = i - 1; j < size - i; j++)
+        for (ssize_t j = i - 1; j < size - i; j++)
         {
             if (array[j] > array[j + 1])
             {
@@ -71,7 +71,7 @@ void array_shaker_sort(T *array, size_t size, bool with_check = false)
             }
         }
 
-        for (size_t j = size - i - 1; j >= i; j--)
+        for (ssize_t j = size - i - 1; j >= i; j--)
         {
             if (array[j] < array[j - 1])
             {
@@ -89,10 +89,10 @@ void array_shaker_sort(T *array, size_t size, bool with_check = false)
 
 #define COMB_COEFFICIENT 2 / 3
 template <typename T>
-void array_comb_sort(T *array, size_t size, bool with_check=false)
+void array_comb_sort(T *array, ssize_t size, bool with_check=false)
 {
     bool sorted = false;
-    size_t distance = size;
+    ssize_t distance = size;
 
     while (!sorted || distance > 1)
     {
@@ -103,7 +103,7 @@ void array_comb_sort(T *array, size_t size, bool with_check=false)
         }
 
         sorted = true;
-        for (size_t i = 0; i + distance < size; i++)
+        for (ssize_t i = 0; i + distance < size; i++)
         {
             if (array[i] > array[i + distance])
             {
@@ -114,10 +114,10 @@ void array_comb_sort(T *array, size_t size, bool with_check=false)
     }
 }
 template <typename T>
-using SortingFunction = void (*)(T*, size_t, bool);
+using SortingFunction = void (*)(T*, ssize_t, bool);
 
 template <typename T>
-void test_sort(T *source_array, size_t size, SortingFunction<T> sorting_function, std::string sorting_name, std::ofstream &plots_data)
+void test_sort(T *source_array, ssize_t size, SortingFunction<T> sorting_function, std::string sorting_name, std::ofstream &plots_data)
 {
     T *array = new T[size];
 
@@ -125,7 +125,7 @@ void test_sort(T *source_array, size_t size, SortingFunction<T> sorting_function
     {
         copy(source_array, array, size);
         auto start = std::chrono::high_resolution_clock::now();
-        array_comb_sort(array, size, with_checking);
+        sorting_function(array, size, with_checking);
         auto end = std::chrono::high_resolution_clock::now();
         if (check_sorted(array, size))
         {
@@ -137,18 +137,20 @@ void test_sort(T *source_array, size_t size, SortingFunction<T> sorting_function
             std::cout << "\033[1;31mERROR\033[0;0m " << sorting_name << (with_checking ? " with checking" : "") << " failed to sort array of " << size << "elements" << std::endl;
         }
     }
+
+    delete[] array;
 }
 
 int main(int argc, char* argv[])
 {
     int *source_array;
-    size_t size;
+    ssize_t size;
 
     std::cin >> size;
 
     source_array = new int[size];
 
-    for (size_t i = 0; i < size; i++)
+    for (ssize_t i = 0; i < size; i++)
     {
         std::cin >> source_array[i];
     }
