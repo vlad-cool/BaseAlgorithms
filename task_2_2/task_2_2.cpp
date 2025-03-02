@@ -46,7 +46,7 @@ long long get_digit(long long n, long long digit)
     return n % BASE_N;
 }
 
-void k_sort(long long *array, ssize_t size, long long digit, long long max_digit)
+void k_sort(long long *array, ssize_t size, long long digit, long long max_digit, long long *tmp_array)
 {
     if (digit == 0)
     {
@@ -54,22 +54,23 @@ void k_sort(long long *array, ssize_t size, long long digit, long long max_digit
     }
     ssize_t arrays_sizes[BASE_N] = {0};
     ssize_t arrays_indexes[BASE_N] = {0};
-    long long *arrays[BASE_N];
+    ssize_t arrays_prefix_sum[BASE_N] = {0};
 
     for (ssize_t i = 0; i < size; i++)
     {
         arrays_sizes[get_digit(array[i], digit)]++;
     }
 
-    for (long long i = 0; i < BASE_N; i++)
+    for (long long i = 1; i < BASE_N; i++)
     {
-        arrays[i] = new long long[arrays_sizes[i]];
+        arrays_prefix_sum[i] = arrays_prefix_sum[i - 1] + arrays_sizes[i - 1];
     }
 
     for (ssize_t i = 0; i < size; i++)
     {
         long long current_digit = get_digit(array[i], digit);
-        arrays[current_digit][arrays_indexes[current_digit]] = array[i];
+        // arrays[current_digit][arrays_indexes[current_digit]] = array[i];
+        tmp_array[arrays_prefix_sum[current_digit] + arrays_indexes[current_digit]] = array[i];
         arrays_indexes[current_digit]++;
     }
 
@@ -78,15 +79,16 @@ void k_sort(long long *array, ssize_t size, long long digit, long long max_digit
     {
         for (ssize_t j = 0; j < arrays_indexes[i]; j++)
         {
-            array[k] = arrays[i][j];
+            // array[k] = arrays[i][j];
+            array[k] = tmp_array[arrays_prefix_sum[i] + j];
             k++;
         }
-        delete arrays[i];
+        // delete arrays[i];
     }
     long long index_first = 0;
     for (long long i = 0; i < BASE_N; i++)
     {
-        k_sort(array + index_first, arrays_sizes[i], digit - 1, max_digit);
+        k_sort(array + index_first, arrays_sizes[i], digit - 1, max_digit, tmp_array);
         index_first += arrays_sizes[i];
     }
 }
@@ -94,6 +96,8 @@ void k_sort(long long *array, ssize_t size, long long digit, long long max_digit
 void array_radix_sort(long long *array, ssize_t size)
 {
     long long max_digits = 0;
+
+    long long *tmp_array = new long long[size];
 
     for (ssize_t i = 0; i < size; i++)
     {
@@ -108,7 +112,9 @@ void array_radix_sort(long long *array, ssize_t size)
         max_digits = digits > max_digits ? digits : max_digits;
     }
 
-    k_sort(array, size, max_digits, max_digits);
+    k_sort(array, size, max_digits, max_digits, tmp_array);
+
+    delete[] tmp_array;
 }
 
 void array_std_sort(long long *array, ssize_t size)
