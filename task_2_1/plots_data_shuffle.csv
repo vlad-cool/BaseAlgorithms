@@ -1,0 +1,66 @@
+Bubble sort, 0, 0.0316702
+Bubble sort with check, 0, 6.342e-06
+Shaker sort, 0, 0.0311282
+Shaker sort with check, 0, 1.1751e-05
+Comb sort, 0, 7.7594e-05
+Comb sort with check, 0, 7.7453e-05
+Bubble sort, 10, 0.0466413
+Bubble sort with check, 10, 0.0460712
+Shaker sort, 10, 0.0468016
+Shaker sort with check, 10, 0.0185695
+Comb sort, 10, 0.00201513
+Comb sort with check, 10, 0.0020115
+Bubble sort, 20, 0.056093
+Bubble sort with check, 20, 0.055598
+Shaker sort, 20, 0.0599519
+Shaker sort with check, 20, 0.0339243
+Comb sort, 20, 0.00182975
+Comb sort with check, 20, 0.00179909
+Bubble sort, 30, 0.0633241
+Bubble sort with check, 30, 0.06344
+Shaker sort, 30, 0.0713522
+Shaker sort with check, 30, 0.0473181
+Comb sort, 30, 0.00367063
+Comb sort with check, 30, 0.0036159
+Bubble sort, 40, 0.0714765
+Bubble sort with check, 40, 0.0703543
+Shaker sort, 40, 0.0779096
+Shaker sort with check, 40, 0.0563593
+Comb sort, 40, 0.00317212
+Comb sort with check, 40, 0.00315527
+Bubble sort, 50, 0.0769807
+Bubble sort with check, 50, 0.0777254
+Shaker sort, 50, 0.086981
+Shaker sort with check, 50, 0.0669177
+Comb sort, 50, 0.00462416
+Comb sort with check, 50, 0.004644
+Bubble sort, 60, 0.0844982
+Bubble sort with check, 60, 0.0840143
+Shaker sort, 60, 0.0940434
+Shaker sort with check, 60, 0.07528
+Comb sort, 60, 0.00284911
+Comb sort with check, 60, 0.00279175
+Bubble sort, 70, 0.0923253
+Bubble sort with check, 70, 0.0916288
+Shaker sort, 70, 0.100732
+Shaker sort with check, 70, 0.0839018
+Comb sort, 70, 0.00369228
+Comb sort with check, 70, 0.00368392
+Bubble sort, 80, 0.0960456
+Bubble sort with check, 80, 0.0941365
+Shaker sort, 80, 0.104131
+Shaker sort with check, 80, 0.088132
+Comb sort, 80, 0.00304209
+Comb sort with check, 80, 0.00303382
+Bubble sort, 90, 0.103427
+Bubble sort with check, 90, 0.101297
+Shaker sort, 90, 0.111145
+Shaker sort with check, 90, 0.0964859
+Comb sort, 90, 0.00506826
+Comb sort with check, 90, 0.00505831
+Bubble sort, 100, 0.10316
+Bubble sort with check, 100, 0.103055
+Shaker sort, 100, 0.113127
+Shaker sort with check, 100, 0.0986895
+Comb sort, 100, 0.00569951
+Comb sort with check, 100, 0.00570057

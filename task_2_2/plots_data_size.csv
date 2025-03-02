@@ -1,18 +1,18 @@
-Radix sort, 2, 0.000686083
-std::sort, 2, 0.00074964
-Radix sort, 3, 0.00118472
-std::sort, 3, 0.00145653
-Radix sort, 4, 0.00152904
-std::sort, 4, 0.00216641
-Radix sort, 5, 0.00235911
-std::sort, 5, 0.00296829
-Radix sort, 6, 0.00461962
-std::sort, 6, 0.00376332
-Radix sort, 7, 0.0186751
-std::sort, 7, 0.00384065
-Radix sort, 8, 0.137851
-std::sort, 8, 0.00392704
-Radix sort, 9, 1.24446
-std::sort, 9, 0.00371719
-Radix sort, 10, 12.2889
-std::sort, 10, 0.00371797
+Radix sort, 2, 0.00125236
+std::sort, 2, 0.00130696
+Radix sort, 3, 0.00172732
+std::sort, 3, 0.00198399
+Radix sort, 4, 0.00238242
+std::sort, 4, 0.00264169
+Radix sort, 5, 0.00437936
+std::sort, 5, 0.00348769
+Radix sort, 6, 0.0171812
+std::sort, 6, 0.00377978
+Radix sort, 7, 0.0185398
+std::sort, 7, 0.00369082
+Radix sort, 8, 0.131171
+std::sort, 8, 0.00376509
+Radix sort, 9, 1.23492
+std::sort, 9, 0.00382474
+Radix sort, 10, 12.1508
+std::sort, 10, 0.00366011

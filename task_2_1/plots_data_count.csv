@@ -1,0 +1,54 @@
+Bubble sort, 10, 3.11e-07
+Bubble sort with check, 10, 1.71e-07
+Shaker sort, 10, 3e-07
+Shaker sort with check, 10, 2.81e-07
+Comb sort, 10, 2.71e-07
+Comb sort with check, 10, 1.7e-07
+Bubble sort, 25, 1.523e-06
+Bubble sort with check, 25, 1.192e-06
+Shaker sort, 25, 1.583e-06
+Shaker sort with check, 25, 1.372e-06
+Comb sort, 25, 4.81e-07
+Comb sort with check, 25, 3.61e-07
+Bubble sort, 100, 1.7232e-05
+Bubble sort with check, 100, 1.5498e-05
+Shaker sort, 100, 1.8003e-05
+Shaker sort with check, 100, 1.5629e-05
+Comb sort, 100, 2.154e-06
+Comb sort with check, 100, 1.382e-06
+Bubble sort, 250, 9.5748e-05
+Bubble sort with check, 250, 9.9885e-05
+Shaker sort, 250, 0.000103742
+Shaker sort with check, 250, 9.4396e-05
+Comb sort, 250, 7.735e-06
+Comb sort with check, 250, 4.718e-06
+Bubble sort, 1000, 0.00144245
+Bubble sort with check, 1000, 0.00150744
+Shaker sort, 1000, 0.00161503
+Shaker sort with check, 1000, 0.002308
+Comb sort, 1000, 7.1743e-05
+Comb sort with check, 1000, 6.5602e-05
+Bubble sort, 2500, 0.00968488
+Bubble sort with check, 2500, 0.00899641
+Shaker sort, 2500, 0.00941167
+Shaker sort with check, 2500, 0.00896324
+Comb sort, 2500, 0.000381888
+Comb sort with check, 2500, 0.000376198
+Bubble sort, 10000, 0.141994
+Bubble sort with check, 10000, 0.144579
+Shaker sort, 10000, 0.149725
+Shaker sort with check, 10000, 0.142742
+Comb sort, 10000, 0.00581031
+Comb sort with check, 10000, 0.00580527
+Bubble sort, 25000, 0.907077
+Bubble sort with check, 25000, 0.899233
+Shaker sort, 25000, 1.02575
+Shaker sort with check, 25000, 0.977194
+Comb sort, 25000, 0.0510927
+Comb sort with check, 25000, 0.0509522
+Bubble sort, 100000, 20.29
+Bubble sort with check, 100000, 20.279
+Shaker sort, 100000, 19.4691
+Shaker sort with check, 100000, 18.7129
+Comb sort, 100000, 0.590037
+Comb sort with check, 100000, 0.589975

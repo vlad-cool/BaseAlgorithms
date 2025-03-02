@@ -89,7 +89,7 @@ void array_shaker_sort(T *array, ssize_t size, bool with_check = false)
 
 #define COMB_COEFFICIENT 2 / 3
 template <typename T>
-void array_comb_sort(T *array, ssize_t size, bool with_check=false)
+void array_comb_sort(T *array, ssize_t size, bool with_check = false)
 {
     bool sorted = false;
     ssize_t distance = size;
@@ -114,10 +114,10 @@ void array_comb_sort(T *array, ssize_t size, bool with_check=false)
     }
 }
 template <typename T>
-using SortingFunction = void (*)(T*, ssize_t, bool);
+using SortingFunction = void (*)(T *, ssize_t, bool);
 
 template <typename T>
-void test_sort(T *source_array, ssize_t size, SortingFunction<T> sorting_function, std::string sorting_name, std::ofstream &plots_data)
+void test_sort(T *source_array, ssize_t size, SortingFunction<T> sorting_function, std::string sorting_name, std::ofstream &plots_data, std::string test_parameter)
 {
     T *array = new T[size];
 
@@ -130,7 +130,7 @@ void test_sort(T *source_array, ssize_t size, SortingFunction<T> sorting_functio
         if (check_sorted(array, size))
         {
             std::cout << "\033[0;32mOK\033[0;0m " << sorting_name << (with_checking ? " with checking" : "") << " successfully sorted array of " << size << " elements. It took " << (end - start).count() * 1e-9 << " seconds" << std::endl;
-            plots_data << sorting_name << (with_checking ? " with check" : "") << ", " << size << ", " << (end - start).count() * 1e-9 << "\n";
+            plots_data << sorting_name << (with_checking ? " with check" : "") << ", " << test_parameter << ", " << (end - start).count() * 1e-9 << "\n";
         }
         else
         {
@@ -141,7 +141,7 @@ void test_sort(T *source_array, ssize_t size, SortingFunction<T> sorting_functio
     delete[] array;
 }
 
-int main(int argc, char* argv[])
+int main(int argc, char *argv[])
 {
     int *source_array;
     ssize_t size;
@@ -156,16 +156,21 @@ int main(int argc, char* argv[])
     }
 
     std::string plots_data_path = "/dev/null";
+    std::string test_parameter = std::to_string(size);
     if (argc > 1)
     {
         plots_data_path = argv[1];
     }
+    if (argc > 2)
+    {
+        test_parameter = argv[2];
+    }
 
     std::ofstream outfile(plots_data_path, std::ios::app);
 
-    test_sort(source_array, size, array_bubble_sort, "Bubble sort", outfile);
-    test_sort(source_array, size, array_shaker_sort, "Shaker sort", outfile);
-    test_sort(source_array, size, array_comb_sort, "Comb sort", outfile);
+    test_sort(source_array, size, array_bubble_sort, "Bubble sort", outfile, test_parameter);
+    test_sort(source_array, size, array_shaker_sort, "Shaker sort", outfile, test_parameter);
+    test_sort(source_array, size, array_comb_sort, "Comb sort", outfile, test_parameter);
 
     delete[] source_array;
 }
