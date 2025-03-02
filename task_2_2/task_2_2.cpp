@@ -37,16 +37,16 @@ bool check_sorted(T *array, ssize_t size)
     return true;
 }
 
-int get_digit(int n, int digit)
+long long get_digit(long long n, long long digit)
 {
-    for (int i = 1; i < digit; i++)
+    for (long long i = 1; i < digit; i++)
     {
         n /= BASE_N;
     }
     return n % BASE_N;
 }
 
-void k_sort(int *array, ssize_t size, int digit, int max_digit)
+void k_sort(long long *array, ssize_t size, long long digit, long long max_digit)
 {
     if (digit == 0)
     {
@@ -54,27 +54,27 @@ void k_sort(int *array, ssize_t size, int digit, int max_digit)
     }
     ssize_t arrays_sizes[BASE_N] = {0};
     ssize_t arrays_indexes[BASE_N] = {0};
-    int *arrays[BASE_N];
+    long long *arrays[BASE_N];
 
     for (ssize_t i = 0; i < size; i++)
     {
         arrays_sizes[get_digit(array[i], digit)]++;
     }
 
-    for (int i = 0; i < BASE_N; i++)
+    for (long long i = 0; i < BASE_N; i++)
     {
-        arrays[i] = new int[arrays_sizes[i]];
+        arrays[i] = new long long[arrays_sizes[i]];
     }
 
     for (ssize_t i = 0; i < size; i++)
     {
-        int current_digit = get_digit(array[i], digit);
+        long long current_digit = get_digit(array[i], digit);
         arrays[current_digit][arrays_indexes[current_digit]] = array[i];
         arrays_indexes[current_digit]++;
     }
 
     ssize_t k = 0;
-    for (int i = 0; i < BASE_N; i++)
+    for (long long i = 0; i < BASE_N; i++)
     {
         for (ssize_t j = 0; j < arrays_indexes[i]; j++)
         {
@@ -83,22 +83,22 @@ void k_sort(int *array, ssize_t size, int digit, int max_digit)
         }
         delete arrays[i];
     }
-    int index_first = 0;
-    for (int i = 0; i < BASE_N; i++)
+    long long index_first = 0;
+    for (long long i = 0; i < BASE_N; i++)
     {
         k_sort(array + index_first, arrays_sizes[i], digit - 1, max_digit);
         index_first += arrays_sizes[i];
     }
 }
 
-void array_radix_sort(int *array, ssize_t size)
+void array_radix_sort(long long *array, ssize_t size)
 {
-    int max_digits = 0;
+    long long max_digits = 0;
 
     for (ssize_t i = 0; i < size; i++)
     {
-        int digits = 1;
-        int number = array[i];
+        long long digits = 1;
+        long long number = array[i];
         while (number >= BASE_N)
         {
             digits++;
@@ -111,7 +111,7 @@ void array_radix_sort(int *array, ssize_t size)
     k_sort(array, size, max_digits, max_digits);
 }
 
-void array_std_sort(int *array, ssize_t size)
+void array_std_sort(long long *array, ssize_t size)
 {
     std::sort(array, array + size);
 }
@@ -120,7 +120,7 @@ template <typename T>
 using SortingFunction = void (*)(T *, ssize_t);
 
 template <typename T>
-void test_sort(int *source_array, ssize_t size, SortingFunction<T> sorting_function, std::string sorting_name, std::ofstream &plots_data)
+void test_sort(long long *source_array, ssize_t size, SortingFunction<T> sorting_function, std::string sorting_name, std::ofstream &plots_data, std::string test_parameter)
 {
     T *array = new T[size];
 
@@ -138,7 +138,7 @@ void test_sort(int *source_array, ssize_t size, SortingFunction<T> sorting_funct
     if (check_sorted(array, size))
     {
         std::cout << "\033[0;32mOK\033[0;0m " << sorting_name << " successfully sorted array of " << size << " elements. It took " << (end - start).count() * 1e-9 << " seconds" << std::endl;
-        plots_data << sorting_name << ", " << size << ", " << (end - start).count() * 1e-9 << "\n";
+        plots_data << sorting_name << ", " << test_parameter << ", " << (end - start).count() * 1e-9 << "\n";
     }
     else
     {
@@ -150,12 +150,12 @@ void test_sort(int *source_array, ssize_t size, SortingFunction<T> sorting_funct
 
 int main(int argc, char *argv[])
 {
-    int *source_array;
+    long long *source_array;
     ssize_t size;
 
     std::cin >> size;
 
-    source_array = new int[size];
+    source_array = new long long[size];
 
     for (ssize_t i = 0; i < size; i++)
     {
@@ -163,15 +163,20 @@ int main(int argc, char *argv[])
     }
 
     std::string plots_data_path = "/dev/null";
+    std::string test_parameter = std::to_string(size);
     if (argc > 1)
     {
         plots_data_path = argv[1];
     }
+    if (argc > 2)
+    {
+        test_parameter = argv[2];
+    }
 
     std::ofstream outfile(plots_data_path, std::ios::app);
 
-    test_sort(source_array, size, array_radix_sort, "Radix sort", outfile);
-    test_sort(source_array, size, array_std_sort, "std::sort", outfile);
+    test_sort(source_array, size, array_radix_sort, "Radix sort", outfile, test_parameter);
+    test_sort(source_array, size, array_std_sort, "std::sort", outfile, test_parameter);
 
     delete[] source_array;
 }
