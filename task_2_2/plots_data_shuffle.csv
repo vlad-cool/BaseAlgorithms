@@ -1,22 +1,22 @@
-Radix sort, 0, 0.000598286
-std::sort, 0, 9.8564e-05
-Radix sort, 10, 0.000343371
-std::sort, 10, 0.000229107
-Radix sort, 20, 0.000302324
-std::sort, 20, 0.000314116
-Radix sort, 30, 0.000344363
-std::sort, 30, 0.000341116
-Radix sort, 40, 0.000330085
-std::sort, 40, 0.000361434
-Radix sort, 50, 0.000309648
-std::sort, 50, 0.000376071
-Radix sort, 60, 0.00031593
-std::sort, 60, 0.000400797
-Radix sort, 70, 0.000327391
-std::sort, 70, 0.000404285
-Radix sort, 80, 8.035e-06
-std::sort, 80, 3.487e-06
-Radix sort, 90, 7.785e-06
-std::sort, 90, 7.143e-06
-Radix sort, 100, 1.3375e-05
-std::sort, 100, 1.4457e-05
+Radix sort, 0, 0.000364101
+std::sort, 0, 0.000182532
+Radix sort, 10, 0.000325719
+std::sort, 10, 0.000178795
+Radix sort, 20, 0.000381203
+std::sort, 20, 0.000232935
+Radix sort, 30, 0.000317994
+std::sort, 30, 0.000254195
+Radix sort, 40, 0.000310962
+std::sort, 40, 0.000289061
+Radix sort, 50, 0.000303617
+std::sort, 50, 0.000316181
+Radix sort, 60, 0.000329506
+std::sort, 60, 0.000332462
+Radix sort, 70, 0.000302395
+std::sort, 70, 0.000353862
+Radix sort, 80, 0.000430675
+std::sort, 80, 0.000536504
+Radix sort, 90, 0.000301494
+std::sort, 90, 0.000367787
+Radix sort, 100, 0.000301894
+std::sort, 100, 0.000382505
