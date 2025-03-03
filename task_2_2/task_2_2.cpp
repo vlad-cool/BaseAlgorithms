@@ -74,15 +74,15 @@ void k_sort(long long *array, ssize_t size, long long digit, long long *tmp_arra
         arrays_indexes[current_digit]++;
     }
 
-    for (ssize_t i = 0; i < size; i++)
-    {
-        array[i] = tmp_array[i];
-    }
+    // for (ssize_t i = 0; i < size; i++)
+    // {
+    //     array[i] = tmp_array[i];
+    // }
 
     long long index_first = 0;
     for (long long i = 0; i < BASE_N; i++)
     {
-        k_sort(array + index_first, arrays_sizes[i], digit - 1, tmp_array);
+        k_sort(tmp_array + index_first, arrays_sizes[i], digit - 1, array + index_first);
         index_first += arrays_sizes[i];
     }
 }
@@ -107,6 +107,14 @@ void array_radix_sort(long long *array, ssize_t size)
     }
 
     k_sort(array, size, max_digits, tmp_array);
+
+    if (max_digits % 2 == 1)
+    {
+        for (ssize_t i = 0; i < size; i++)
+        {
+            array[i] = tmp_array[i];
+        }
+    }
 
     delete[] tmp_array;
 }
