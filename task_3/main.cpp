@@ -49,6 +49,9 @@ private:
     Node<T> *from;
     Node<T> *to;
     unsigned int weight;
+
+    unsigned int used_flow;
+
     friend class Graph<T>;
     friend class Node<T>;
 
@@ -107,6 +110,31 @@ private:
             }
         }
         result.push_back(node->id);
+    }
+
+    bool find_path(Node<T> *from, Node<T> *to, std::vector<Edge<T> *> &result)
+    {
+        from->visited = true;
+        if (from == to)
+        {
+            return true;
+        }
+        else
+        {
+            for (auto i = from->edges_from_node.begin(); i != from->edges_from_node.end(); i++)
+            {
+                if ((*i)->weight - (*i)->used_flow == 0)
+                {
+                    continue;
+                }
+                if (find_path((*i)->to, to, result))
+                {
+                    result.push_back(*i);
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 
 public:
@@ -246,12 +274,43 @@ public:
                 }
             }
         }
-        
 
         for (auto i = nodes.begin(); i != nodes.end(); i++)
         {
             std::cout << i->second->id << " " << i->second->distance << std::endl;
         }
+    }
+
+    unsigned int max_flow(T from_id, T to_id)
+    {
+        unsigned int max_flow = 0;
+        for (auto i = edges.begin(); i != edges.end(); i++)
+        {
+            (*i)->used_flow = 0;
+        }
+
+        mark_nodes_unvisited();
+        
+        std::vector<Edge<T> *> path;
+        
+        while (find_path(nodes[from_id], nodes[to_id], path))
+        {
+            mark_nodes_unvisited();
+            unsigned int min_weight = UINT_MAX;
+            for (auto i = path.begin(); i != path.end(); i++)
+            {
+                min_weight = std::min(min_weight, (*i)->weight - (*i)->used_flow);
+            }
+            for (auto i = path.begin(); i != path.end(); i++)
+            {
+                (*i)->used_flow += min_weight;
+            }
+            max_flow += min_weight;
+
+            path.clear();
+        }
+
+        return max_flow;
     }
 };
 
@@ -280,7 +339,6 @@ int main()
         }
         if (command == "REMOVE")
         {
-            std::cout << "A" << std::endl;
             std::cin >> command;
             if (command == "NODE")
             {
@@ -290,7 +348,6 @@ int main()
             }
             if (command == "EDGE")
             {
-                std::cout << "B" << std::endl;
                 std::string from_id;
                 std::string to_id;
                 std::cin >> from_id >> to_id;
@@ -312,6 +369,17 @@ int main()
             std::string id;
             std::cin >> id;
             graph.dijkstra(id);
+        }
+        if (command == "MAX")
+        {
+            std::cin >> command;
+            if (command == "FLOW")
+            {
+                std::string from_id;
+                std::string to_id;
+                std::cin >> from_id >> to_id;
+                std::cout << graph.max_flow(from_id, to_id) << std::endl;
+            }
         }
 
         std::cin >> command;
