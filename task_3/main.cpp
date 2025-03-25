@@ -223,7 +223,6 @@ public:
 
         while (node != nullptr)
         {
-            std::cout << node->id << " " << std::boolalpha << node->visited << std::endl;
             for (auto i = node->edges_from_node.begin(); i != node->edges_from_node.end(); i++)
             {
                 if ((*i)->to->visited)
