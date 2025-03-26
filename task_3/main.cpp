@@ -2,6 +2,7 @@
 #include <map>
 #include <vector>
 #include <climits>
+#include <algorithm>
 
 template <typename T>
 class Node;
