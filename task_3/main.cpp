@@ -23,6 +23,7 @@ private:
     friend class Edge<T>;
 
     bool visited;
+    bool visited_now;
     int distance;
 
 public:
@@ -81,6 +82,7 @@ private:
         for (auto i = nodes.begin(); i != nodes.end(); i++)
         {
             i->second->visited = false;
+            i->second->visited_now = false;
         }
     }
 
@@ -92,25 +94,29 @@ private:
         }
     }
 
-    void rpo_numbering_inner(Node<T> *node, std::vector<T> &result, T &start_node)
+    void rpo_numbering_inner(Node<T> *node, std::vector<T> &result)
     {
         if (node->visited)
         {
             return;
         }
         node->visited = true;
+        node->visited_now = true;
         for (auto i = node->edges_from_node.begin(); i != node->edges_from_node.end(); i++)
         {
-            if ((*i)->to->id == start_node)
+            // if ((*i)->to->id == start_node)
+            if ((*i)->to->visited_now)
             {
-                std::cout << "Found loop " << start_node << "->" << node->id << std::endl;
+                std::cout << "Found loop " << (*i)->from->id << "->" << (*i)->to->id << std::endl;
             }
             else
             {
-                rpo_numbering_inner((*i)->to, result, start_node);
+                rpo_numbering_inner((*i)->to, result);
             }
         }
+        // node->visited = false;
         result.push_back(node->id);
+        node->visited_now = false;
     }
 
     bool find_path(Node<T> *from, Node<T> *to, std::vector<Edge<T> *> &result)
@@ -233,7 +239,7 @@ public:
     {
         std::vector<T> result;
         mark_nodes_unvisited();
-        rpo_numbering_inner(nodes[id], result, id);
+        rpo_numbering_inner(nodes[id], result);
 
         for (auto i = result.rbegin(); i != result.rend(); i++)
         {
@@ -291,9 +297,9 @@ public:
         }
 
         mark_nodes_unvisited();
-        
+
         std::vector<Edge<T> *> path;
-        
+
         while (find_path(nodes[from_id], nodes[to_id], path))
         {
             mark_nodes_unvisited();

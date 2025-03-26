@@ -1,5 +1,5 @@
 CXX = g++
-CXXFLAGS = -Wall -O3 -std=c++26
+CXXFLAGS = -Wall -O3 -std=c++23
 SOURCES = $(wildcard task*/*.cpp)
 COMMON = $(wildcard common/*)
 TARGETS = $(SOURCES:.cpp=)
